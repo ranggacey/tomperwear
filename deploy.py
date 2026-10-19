@@ -6,7 +6,7 @@ ROOT = os.path.expanduser("~/workspace/tomperwear")
 TOKEN = open('/home/hatch/.config/vercel/token').read().strip()
 PRJ = 'prj_USmc8yFhQSnwCccHtQXs2C7e4h9M'
 
-SKIP_DIRS = {'node_modules', '.git', 'build', 'public', '__pycache__'}
+SKIP_DIRS = {'node_modules', '.git', 'build', '__pycache__'}
 SKIP_FILES = {'.DS_Store', 'deploy.py', '.last-deploy.json'}
 
 def api(method, path, data=None, headers=None):
@@ -25,7 +25,11 @@ def api(method, path, data=None, headers=None):
 # 1. kumpulkan file
 entries = []
 for dirpath, dirnames, filenames in os.walk(ROOT):
-    dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS]
+    # root/public = output build (jangan diupload); web/public & admin/public = source CRA (wajib ikut)
+    skip = set(SKIP_DIRS)
+    if os.path.abspath(dirpath) == os.path.abspath(ROOT):
+        skip.add('public')
+    dirnames[:] = [d for d in dirnames if d not in skip]
     for fn in filenames:
         if fn in SKIP_FILES or fn.endswith('.log'):
             continue

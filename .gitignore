@@ -6,3 +6,6 @@ admin/node_modules/
 admin/build/
 .env
 .DS_Store
+
+deploy.py
+.last-deploy.json
