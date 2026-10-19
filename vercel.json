@@ -1,0 +1,1 @@
+{"buildCommand":"npm run build","outputDirectory":"public","rewrites":[{"destination":"/api/index","source":"/api/:path*"},{"destination":"/admin/index.html","source":"/admin/:path*"},{"destination":"/index.html","source":"/((?!api/|admin/|static/|favicon\\.ico|manifest\\.json|asset-manifest\\.json|logo).*)"}]}
