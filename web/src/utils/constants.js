@@ -111,7 +111,7 @@ export const services = [
   },
 ];
 
-const domain = process.env.REACT_APP_BACKEND_HOST;
+const domain = process.env.REACT_APP_BACKEND_HOST || '';
 export const products_url = `${domain}/api/products`;
 export const single_product_url = `${domain}/api/products/`;
 export const create_order_url = `${domain}/api/orders/new`;
