@@ -7,7 +7,8 @@ import Button from '../Button';
 
 const Contact = () => {
   const { currentUser } = useUserContext();
-  const [state, handleSubmit] = useForm(process.env.REACT_APP_FORMSPREE);
+  // REACT_APP_FORMSPREE belum diisi → pakai key dummy supaya useForm tidak throw saat render
+  const [state, handleSubmit] = useForm(process.env.REACT_APP_FORMSPREE || 'dummy-form-key');
   const [feedbackText, setFeedbackText] = useState('');
 
   useEffect(() => {

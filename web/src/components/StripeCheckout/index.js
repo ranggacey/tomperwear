@@ -16,7 +16,9 @@ import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { payment_url as url } from '../../utils/constants';
 
-const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
+// REACT_APP_STRIPE_PUBLIC_KEY belum diisi → jangan panggil loadStripe tanpa key (throw)
+const stripeKey = process.env.REACT_APP_STRIPE_PUBLIC_KEY;
+const promise = stripeKey ? loadStripe(stripeKey) : Promise.resolve(null);
 
 const CheckoutForm = () => {
   const { cart, total_amount, shipping_fee, clearCart } = useCartContext();
